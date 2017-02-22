@@ -5,5 +5,12 @@ class QController(object):
         self.__maze = maze
 
     def invoke(self):
+        #
+        # Select action from state
+        #
         direction = (random.randint(-1, 1), random.randint(-1, 1))
         self.__maze.move_player(direction)
+
+        #
+        # Train Q-function
+        #
