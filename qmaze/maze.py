@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 class MazeObject(object):
-    def move(self, game):
+    def move(self, maze):
         return True
 
     def to_map_str(self):
@@ -14,22 +14,23 @@ class Block(MazeObject):
     def to_map_str(self):
         return '壁'
 
-    def move(self, game):
+    def move(self, maze):
         return False
 
 class Goal(MazeObject):
     def to_map_str(self):
         return '🚩 '
 
-    def move(self, game):
-        game.is_goal = True
+    def move(self, maze):
+        maze.is_goal = True
         return True
 
 class Floor(MazeObject):
     pass
 
 class Maze(object):
-    def __init__(self, game):
+    def __init__(self):
+        self.is_goal = False
         self.size = 5
         self.__map = [
             [Floor(), Block(), Goal(),  Floor(), Floor()],
@@ -39,7 +40,6 @@ class Maze(object):
             [Floor(), Floor(), Floor(), Floor(), Floor()],
         ]
         self.__player_position = (0, 0)
-        self.__game = game
 
     def move_player(self, direction):
         x, y = direction
@@ -53,7 +53,7 @@ class Maze(object):
 
         maze_obj = self.__map[mx][my]
 
-        if maze_obj.move(self.__game):
+        if maze_obj.move(self):
             self.__player_position = (mx, my)
 
     def show(self):

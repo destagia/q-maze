@@ -1,0 +1,14 @@
+#!/usr/bin/env python
+
+import qmaze
+
+maze = qmaze.Maze()
+controller = qmaze.QController(maze)
+
+time = 0
+while not maze.is_goal:
+    time += 1
+    controller.invoke()
+    maze.show()
+
+print('elapsed time: {}'.format(time))
