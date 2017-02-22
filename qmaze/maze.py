@@ -64,7 +64,7 @@ class Maze(object):
             for j in range(len(row)):
                 point = row[j]
                 if self.__player_position == (i, j):
-                    row_str += '😺 '
+                    row_str += '🐼 '
                 else:
                     row_str += point.to_map_str()
             row_str += '｜'
