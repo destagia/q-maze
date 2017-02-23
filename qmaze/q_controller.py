@@ -8,7 +8,13 @@ class QController(object):
         #
         # Select action from state
         #
-        direction = (random.randint(-1, 1), random.randint(-1, 1))
+        dx = random.randint(-1, 1)
+        if dx == 0:
+            dy = random.randint(-1, 1)
+        else:
+            dy = 0
+        direction = (dy, dx)
+        print('player move: (x, y) = {}'.format((dx, dy)))
         self.__maze.move_player(direction)
 
         #
