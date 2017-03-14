@@ -30,7 +30,7 @@ class Floor(MazeObject):
 
 class Maze(object):
     def __init__(self):
-        self.is_goal = False
+        self.reset()
         self.size = 5
         self.__map = [
             [Floor(), Block(), Goal(),  Floor(), Floor()],
@@ -39,10 +39,16 @@ class Maze(object):
             [Block(), Block(), Floor(), Block(), Floor()],
             [Floor(), Floor(), Floor(), Floor(), Floor()],
         ]
+
+    def reset(self):
+        self.is_goal = False
         self.__player_position = (0, 0)
 
+    def get_player_position(self):
+        return self.__player_position
+
     def move_player(self, direction):
-        x, y = direction
+        y, x = direction
         px, py = self.__player_position
         mx, my = px + x, py + y
 

@@ -5,10 +5,25 @@ import qmaze
 maze = qmaze.Maze()
 controller = qmaze.QController(maze)
 
-time = 0
-while not maze.is_goal:
-    time += 1
-    controller.invoke()
-    maze.show()
+def run_epoc(show=False):
+	maze.reset()
 
-print('elapsed time: {}'.format(time))
+	time = 0
+	while not maze.is_goal:
+		if show:
+			maze.show()
+			controller.show_q()
+		time += 1
+		controller.invoke()
+
+	print('elapsed time: {}'.format(time))
+
+TRAIN_COUNT = 10000
+for count in range(TRAIN_COUNT):
+	run_epoc()
+
+
+print("After train ================")
+
+controller.epsilon = 0.0
+run_epoc(show=True)
